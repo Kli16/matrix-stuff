@@ -2,51 +2,48 @@ import math
 
 def make_translate( x, y, z ):
     matrix = new_matrix(4, 4)
-    matrix[1][4] = x
-    matrix[2][4] = y
-    matrix[3][4] = z
-    matrix[4][4] = 1
+    ident(matrix)
+    matrix[3][0] = x
+    matrix[3][1] = y
+    matrix[3][2] = z
     return matrix
 
 def make_scale( x, y, z ):
     matrix = new_matrix(4, 4)
-    matrix[1][1] = x
-    matrix[2][2] = y
-    matrix[3][3] = z
-    matrix[4][4] = 1
+    ident(matrix)
+    matrix[0][0] = x
+    matrix[1][1] = y
+    matrix[2][2] = z
     return matrix
 
 def make_rotX( theta ):
     thetar = theta * math.pi / 180
     matrix = new_matrix(4, 4)
+    ident(matrix)
     matrix[1][1] = math.cos(thetar)
-    matrix[1][2] = -1 * math.sin(thetar)
-    matrix[2][1] = math.sin(thetar)
+    matrix[2][1] = -1 * math.sin(thetar)
+    matrix[1][2] = math.sin(thetar)
     matrix[2][2] = math.cos(thetar)
-    matrix[3][3] = 1
-    matrix[4][4] = 1
     return matrix
 
 def make_rotY( theta ):
     thetar = theta * math.pi / 180
     matrix = new_matrix(4, 4)
-    matrix[1][1] = math.cos(thetar)
-    matrix[1][3] = math.sin(thetar)
-    matrix[2][1] = 1
-    matrix[3][1] = -1 * math.sin(thetar)
-    matrix[3][3] = math.cos(thetar)
-    matrix[4][4] = 1
+    ident(matrix)
+    matrix[0][0] = math.cos(thetar)
+    matrix[2][0] = math.sin(thetar)
+    matrix[0][2] = -1 * math.sin(thetar)
+    matrix[2][2] = math.cos(thetar)
     return matrix
 
 def make_rotZ( theta ):
     thetar = theta * math.pi / 180
     matrix = new_matrix(4, 4)
-    matrix[1][1] = 1
-    matrix[2][2] = math.cos(thetar)
-    matrix[2][3] = -1 * math.sin(thetar)
-    matrix[3][2] = math.sin(thetar)
-    matrix[3][3] = math.cos(thetar)
-    matrix[4][4] = 1
+    ident(matrix)
+    matrix[0][0] = math.cos(thetar)
+    matrix[1][0] = -1 * math.sin(thetar)
+    matrix[0][1] = math.sin(thetar)
+    matrix[1][1] = math.cos(thetar)
     return matrix
 
 def print_matrix( matrix ):
